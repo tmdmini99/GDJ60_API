@@ -11,7 +11,7 @@ public class StringEx2 {
 		String fileName = sc.next();
 		int check = 0;
 		for(int i=0; i<names.length;i++) {
-			int idx = fileName.lastIndexOf(".");
+			int idx = fileName.indexOf(".");
 			
 			if(fileName.substring(idx+1).equals(names[i])) {
 				check = 1;
