@@ -29,7 +29,7 @@ public class WeatherControl {
 		this.dto =new WeatherDTO();
 		this.view= new WeatherView();
 		this.input = new WeatherInput();
-		this.dtolist=data.init();
+
 		
 	}
 	
@@ -45,6 +45,7 @@ public class WeatherControl {
 			System.out.println("6번 종료");
 			int num = sc.nextInt();
 			if(num == 1) {
+				dtolist=data.init();
 				System.out.println("날씨가 초기화 되었습니다");
 			}else if(num ==2) {
 				view.viewList(dtolist);
