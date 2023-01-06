@@ -4,7 +4,7 @@ public class StringStudy3 {
 
 	public static void main(String[] args) {
 		//String은 불변
-		
+		//클래스명 변수명 = new 생성자
 		String str1 ="hello";
 		String str2 ="hello";
 		String str3 =new String("hello");
@@ -15,6 +15,9 @@ public class StringStudy3 {
 		
 		str1 = str1+"word"+str2;
 		System.out.println(str1);
+		
+		
+		
 	}
 
 }
