@@ -14,14 +14,27 @@ public class WeatherControl {
 	//5.지역 날씨 삭제
 	//배열에서 삭제
 	//6.종료
+	
+	private Scanner sc;
+	private boolean check = true;
+	private WeatherData data ;
+	private WeatherDTO dto;
+	private WeatherView view ;
+	private WeatherInput input;
+	private WeatherDTO [] dtolist;
+	
+	public WeatherControl() {
+		this.sc=new Scanner(System.in);
+		this.data=new WeatherData();
+		this.dto =new WeatherDTO();
+		this.view= new WeatherView();
+		this.input = new WeatherInput();
+		this.dtolist=data.init();
+		
+	}
+	
 	public void start() {
-		Scanner sc =new Scanner(System.in);
-		boolean check = true;
-		WeatherData data =new WeatherData();
-		WeatherDTO dto =new WeatherDTO();
-		WeatherView view = new WeatherView();
-		WeatherInput input = new WeatherInput();
-		WeatherDTO [] dtolist=data.init();
+		
 		while(check) {
 			
 			System.out.println("1번 날씨정보 초기화");
