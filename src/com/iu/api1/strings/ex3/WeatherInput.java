@@ -3,7 +3,10 @@ package com.iu.api1.strings.ex3;
 import java.util.Scanner;
 
 public class WeatherInput {
-	private Scanner sc =new Scanner(System.in);
+	private Scanner sc ;
+	public WeatherInput(){
+		this.sc =new Scanner(System.in);
+	}
 	//도시 하나의 정보
 	//search 메서드
 	//weather 배열
@@ -55,15 +58,20 @@ public class WeatherInput {
 	public WeatherDTO[] remove(WeatherDTO[] dto) {
 		WeatherDTO[] dto1 =new WeatherDTO[dto.length-1];
 		System.out.println("삭제할 도시명을 입력하세요");
-		String name = sc.next();
+		String name = sc.next().toLowerCase();
 		
 		int k=0;
-		for(int i=0; i<dto1.length;i++) {
-			if(name.toLowerCase().equals(dto[i].getCity().toLowerCase())) {
+		for(int i=0; i<dto.length;i++) {
+			if(name.equals(dto[i].getCity().toLowerCase())) {
 				continue;
 			}
+			
+			dto1[k]=dto[i];
+			System.out.println(dto1[k].getCity());
 			k++;
-		}
+			}
+	
+		
 		
 		
 		

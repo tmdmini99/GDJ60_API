@@ -45,7 +45,7 @@ public class WeatherControl {
 			System.out.println("6번 종료");
 			int num = sc.nextInt();
 			if(num == 1) {
-				dtolist=data.init();
+				this.dtolist=data.init();
 				System.out.println("날씨가 초기화 되었습니다");
 			}else if(num ==2) {
 				view.viewList(dtolist);

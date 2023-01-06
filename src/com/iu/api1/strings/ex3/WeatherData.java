@@ -13,44 +13,44 @@ public class WeatherData {
 		String [] result = data.split(",");
 		WeatherDTO [] dto = new WeatherDTO[result.length/4];
 		int k=0;
-//	for(int i=0; i<result.length;i++) {
-//		WeatherDTO dto2 = new WeatherDTO();
-//		dto2.setCity(result[i]);
-//		dto2.setGion(result[++i]);
-//		dto2.setStatus(result[++i]);
-//		dto2.setMise(result[++i]);
-//		dto[k]=dto2;
-//		k++;
-//	}
-		
-		
-		
-		
-		
+	for(int i=0; i<result.length;i++) {
 		WeatherDTO dto2 = new WeatherDTO();
-		for(int i =0; i<result.length;i++) {
-			
-			
-			if(i%4 == 0) {
-				dto2.setCity(result[i]);
-				dto[k]=dto2;
-				
-				
-			}else if(i%4 == 1) {
-				dto2.setGion(result[i]);
-				dto[k]=dto2;
-				
-			}else if(i%4 == 2) {
-				dto2.setStatus(result[i]);
-				dto[k]=dto2;
-			}else if(i%4 == 3) {
-				dto2.setMise(result[i]);
-				dto[k]=dto2;
-				k++;
-				
-			}
-			
-		}
+		dto2.setCity(result[i]);
+		dto2.setGion(result[++i]);
+		dto2.setStatus(result[++i]);
+		dto2.setMise(result[++i]);
+		dto[k]=dto2;
+		k++;
+	}
+		
+		
+		
+		
+		
+//		WeatherDTO dto2 = new WeatherDTO();
+//		for(int i =0; i<result.length;i++) {
+//			
+//			
+//			if(i%4 == 0) {
+//				dto2.setCity(result[i]);
+//				dto[k]=dto2;
+//				
+//				
+//			}else if(i%4 == 1) {
+//				dto2.setGion(result[i]);
+//				dto[k]=dto2;
+//				
+//			}else if(i%4 == 2) {
+//				dto2.setStatus(result[i]);
+//				dto[k]=dto2;
+//			}else if(i%4 == 3) {
+//				dto2.setMise(result[i]);
+//				dto[k]=dto2;
+//				k++;
+//				
+//			}
+//			
+//		}
 			
 			
 		
