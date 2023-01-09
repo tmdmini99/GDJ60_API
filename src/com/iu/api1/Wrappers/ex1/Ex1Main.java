@@ -8,7 +8,11 @@ public class Ex1Main {
 		Scanner sc =new Scanner(System.in);
 		System.out.println("주민등록 번호 입력");//991212-1234657
 		String num =sc.next();
+		
+		JuminCheck check1 =new JuminCheck();
 		JuminCheck2 check = new JuminCheck2();
+		
+		
 		check.check(num);
 		
 		

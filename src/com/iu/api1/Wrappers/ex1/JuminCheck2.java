@@ -14,53 +14,110 @@ public class JuminCheck2 {
 	//11-1 10
 	//11로 뺀 결과값이 두자리라면 
 	//결과값을 다시 10으로 나눈 나머지를 체크용 번호랑 같은지 확인
-	public void check(String num) {
-		int checkNum =Integer.parseInt(num.substring(13));
-		num =num.replace(num.substring(13),"");
+	
+	
+	public void check(String jumin) {
 		
-		num =num.replace(num.substring(6,7),"");
-		
-		String []num2 =num.split("");
-		int k=2;
-		int total=0;
-		int []intnum = new int[num2.length];
-		for(int i=0; i<num2.length; i++) {
-			intnum[i] =Integer.parseInt(num2[i]);
-			total=total+intnum[i]*k;
-			k++;
-			if(k >9) {
-				k=2;
+		int num=2;
+		int sum = 0;
+		for(int i=0; i<jumin.length()-1;i++) {
+			if(i ==6) {
+				continue;
+			}
+			sum=sum+Integer.parseInt(String.valueOf(jumin.charAt(i)))*num;
+			//sum=sum+Integer.parseInt(jumin.substring(i,i+1))*num;
+			System.out.println(Integer.parseInt(jumin.substring(i,i+1))*num);
+			num++;
+			if(num ==10) {
+				num =2;
 			}
 		}
 		
+		int result =11 -sum%11;
 		
-		for(int i=0; i<intnum.length;i++) {
-			
-			
+		if(result >9) {
+			result =result%10;
 		}
-		System.out.println(total);
-		total =total%11;
-		total =11-total;
-		if(total>9) {
-			total =total%10;
-		}
+		int flag =Integer.parseInt(jumin.substring(13));
 		
-		
-		
-		if(total == checkNum) {
-			System.out.println("체크용 번호가 같습니다");
-			System.out.println("나머지 :"+total);
-			System.out.println("체크용 번호"+checkNum);
-			
+		if(result == flag) {
+			System.out.println("정상");
 		}else {
-			System.out.println("체크용 번호가 다릅니다");
-			System.out.println("나머지 :"+total);
-			System.out.println("체크용 번호"+checkNum);
+			System.out.println("비정상");
 		}
 		
 		
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	public void check(String num) {
+//		int checkNum =Integer.parseInt(num.substring(13));
+//		num =num.replace(num.substring(13),"");
+//		
+//		num =num.replace(num.substring(6,7),"");
+//		
+//		String []num2 =num.split("");
+//		int k=2;
+//		int total=0;
+//		int []intnum = new int[num2.length];
+//		for(int i=0; i<num2.length; i++) {
+//			intnum[i] =Integer.parseInt(num2[i]);
+//			total=total+intnum[i]*k;
+//			k++;
+//			if(k >9) {
+//				k=2;
+//			}
+//		}
+//		
+//		System.out.println(total);
+//		total =total%11;
+//		total =11-total;
+//		if(total>9) {
+//			total =total%10;
+//		}
+//		
+//		
+//		
+//		if(total == checkNum) {
+//			System.out.println("체크용 번호가 같습니다");
+//			System.out.println("나머지 :"+total);
+//			System.out.println("체크용 번호"+checkNum);
+//			
+//		}else {
+//			System.out.println("체크용 번호가 다릅니다");
+//			System.out.println("나머지 :"+total);
+//			System.out.println("체크용 번호"+checkNum);
+//		}
+//		
+//		
+//		
+//	}
 	
 
 }

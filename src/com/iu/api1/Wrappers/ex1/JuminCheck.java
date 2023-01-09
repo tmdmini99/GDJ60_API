@@ -1,6 +1,6 @@
 package com.iu.api1.Wrappers.ex1;
 
-public class juminCheck {
+public class JuminCheck {
 	
 	
 	//check1
