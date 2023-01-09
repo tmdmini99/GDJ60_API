@@ -1,5 +1,7 @@
 package com.iu.api1.strings.ex3;
 
+import java.util.StringTokenizer;
+
 public class WeatherData {
 	private String data;
 	
@@ -9,19 +11,45 @@ public class WeatherData {
 	}
 	//init 
 	//data를 파싱해서 각 data를 DTO에 대입하고 DTO들을 리턴
+	
 	public WeatherDTO[] init() {
-		String [] result = data.split(",");
-		WeatherDTO [] dto = new WeatherDTO[result.length/4];
-		int k=0;
-	for(int i=0; i<result.length;i++) {
-		WeatherDTO dto2 = new WeatherDTO();
-		dto2.setCity(result[i]);
-		dto2.setGion(Integer.parseInt(result[++i]));
-		dto2.setStatus(result[++i]);
-		dto2.setMise(Integer.parseInt(result[++i]));
-		dto[k]=dto2;
-		k++;
+		StringTokenizer st = new StringTokenizer(data,",");
+		WeatherDTO [] dto =new WeatherDTO[st.countTokens()/4];
+		int i=0;
+		while(st.hasMoreTokens()) {
+			WeatherDTO dto2 = new WeatherDTO();
+			dto2.setCity(st.nextToken());
+			dto2.setGion(Integer.parseInt(st.nextToken()));
+			dto2.setStatus(st.nextToken());
+			dto2.setMise(Integer.parseInt(st.nextToken()));
+			dto[i]=dto2;
+			i++;
+		}
+		
+		
+		
+		return dto;
+		
+		
 	}
+	
+	
+	
+	
+	
+//	public WeatherDTO[] init() {
+//		String [] result = data.split(",");
+//		WeatherDTO [] dto = new WeatherDTO[result.length/4];
+//		int k=0;
+//	for(int i=0; i<result.length;i++) {
+//		WeatherDTO dto2 = new WeatherDTO();
+//		dto2.setCity(result[i]);
+//		dto2.setGion(Integer.parseInt(result[++i]));
+//		dto2.setStatus(result[++i]);
+//		dto2.setMise(Integer.parseInt(result[++i]));
+//		dto[k]=dto2;
+//		k++;
+//	}
 		
 		
 		
@@ -54,6 +82,6 @@ public class WeatherData {
 			
 			
 		
-		return dto;
-	}
+//		return dto;
+//	}
 }

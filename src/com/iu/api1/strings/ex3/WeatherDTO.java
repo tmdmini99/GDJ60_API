@@ -5,6 +5,7 @@ public class WeatherDTO {
 	private int gion;
 	private String status;
 	private int mise;
+	
 	public String getCity() {
 		return city;
 	}
