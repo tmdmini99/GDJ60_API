@@ -38,11 +38,11 @@ public class WeatherInput {
 		System.out.println("추가할 지역을 입력해주세요 ");
 		dto2.setCity(sc.next());
 		System.out.println("온도 입력");
-		dto2.setGion(sc.next());
+		dto2.setGion(sc.nextInt());
 		System.out.println("날씨 입력");
 		dto2.setStatus(sc.next());
 		System.out.println("미세먼지 농도입력");
-		dto2.setMise(sc.next());
+		dto2.setMise(sc.nextInt());
 		
 		dto1[dto.length]=dto2;
 		
