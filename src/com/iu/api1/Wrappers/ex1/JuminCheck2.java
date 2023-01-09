@@ -21,18 +21,22 @@ public class JuminCheck2 {
 		num =num.replace(num.substring(6,7),"");
 		
 		String []num2 =num.split("");
-		int []intnum = new int[num2.length];
-		for(int i=0; i<num2.length; i++) {
-			intnum[i] =Integer.parseInt(num2[i].trim());
-		}
 		int k=2;
 		int total=0;
-		for(int i=0; i<intnum.length;i++) {
+		int []intnum = new int[num2.length];
+		for(int i=0; i<num2.length; i++) {
+			intnum[i] =Integer.parseInt(num2[i]);
 			total=total+intnum[i]*k;
 			k++;
 			if(k >9) {
 				k=2;
 			}
+		}
+		
+		
+		for(int i=0; i<intnum.length;i++) {
+			
+			
 		}
 		System.out.println(total);
 		total =total%11;
