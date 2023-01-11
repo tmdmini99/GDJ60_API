@@ -24,8 +24,8 @@ public class StudentControl {
 			System.out.println("3번 학생정보 검색조회");
 			System.out.println("4번 학생정보 추가");
 			System.out.println("5번 학생정보 삭제");
-			System.out.println("6번 학생정보 초기화");
-			System.out.println("6번 종료");
+			System.out.println("6번 학생정보 백업");
+			System.out.println("7번 종료");
 			int num = sc.nextInt();
 			
 			switch(num) {
@@ -47,6 +47,9 @@ public class StudentControl {
 				break;
 			case 5:
 				dao.remove(ar);
+				break;
+			case 6:
+				dao.backup(ar);
 				break;
 			
 			default:

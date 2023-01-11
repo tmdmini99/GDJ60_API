@@ -1,6 +1,8 @@
 package com.iu.api2.collections.ex1;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Ex1Main {
 
@@ -15,7 +17,18 @@ public class Ex1Main {
 		//6.프로그램 종료
 		StudentControl st = new StudentControl();
 		st.start();
-		;
+		
+		File file = new File("C:\\fileTest", "a.txt");
+		
+		try {
+			FileWriter fw = new FileWriter(file);
+			fw.write("test\r\n");
+			fw.flush();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
 		
 		
 		
