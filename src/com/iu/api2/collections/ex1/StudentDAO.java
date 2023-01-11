@@ -1,5 +1,6 @@
 package com.iu.api2.collections.ex1;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -97,6 +98,14 @@ public class StudentDAO {
 			System.out.println("삭제 실패");
 		}
 		
+		
+	}
+	//학생정보 백업
+	public void StudentBackup() {
+		File file = new File("D:\\sm\\backup\\backup.txt");
+		if(!file.exists()) {
+			file.mkdirs();
+		}
 		
 	}
 }
