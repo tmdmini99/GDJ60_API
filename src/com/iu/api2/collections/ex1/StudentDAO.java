@@ -3,7 +3,10 @@ package com.iu.api2.collections.ex1;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -21,9 +24,9 @@ public class StudentDAO {
 	//학생정보 초기화
 	public ArrayList<StudentDTO> init() {
 		String s = this.sb.toString();
-		System.out.println(s);
+		
 		s =s.replace(",", "-");
-		System.out.println(s);
+		
 		StringTokenizer st = new StringTokenizer(s,"-");
 
 		ArrayList<StudentDTO> ar = new ArrayList<>();
@@ -38,6 +41,7 @@ public class StudentDAO {
 			dto.setAvg(dto.getTotal()/3.0);
 			ar.add(dto);
 		}
+		System.out.println(ar);
 		return ar;
 
 	}
@@ -105,10 +109,23 @@ public class StudentDAO {
 	//학생정보 백업
 	//현재시간을 파일명으로 해서 파일 작성
 	public void backup(ArrayList<StudentDTO> dto) {
-		File file = new File("C:\\fileTest","backup.txt");
-		if(!file.exists()) {
-			file.mkdirs();
-		}
+		
+		
+			
+			
+		
+		Calendar ca = Calendar.getInstance();
+		Date now =ca.getTime();
+		SimpleDateFormat nows =new SimpleDateFormat();
+		String realnow = "";
+		realnow =realnow+nows.format(now);
+		realnow=realnow.replace(":", ".");
+		realnow =realnow+".txt";
+		System.out.println(realnow);
+		
+		File file = new File("C:\\fileTest",realnow);
+		
+		
 		String ss="";
 		ArrayList<String> s = new ArrayList<>();
 		for(int i=0;i<dto.size();i++) {
@@ -122,12 +139,6 @@ public class StudentDAO {
 			sbs.append(dto.get(i).getAvg()+"-\n");
 			
 			ss = ss+sbs.toString();
-			
-			
-
-
-
-
 		}
 		
 		try {
@@ -138,5 +149,7 @@ public class StudentDAO {
 			
 			e.printStackTrace();
 		}
-	}
+		
+		}
+	
 }

@@ -17,6 +17,7 @@ public class StudentControl {
 	public void start() {
 		Scanner sc =new Scanner(System.in);
 		boolean check = true;
+		int i =0;
 		
 		while(check) {
 			System.out.println("1번 학생정보초기화");
@@ -30,7 +31,11 @@ public class StudentControl {
 			
 			switch(num) {
 			case 1:
-				this.ar = dao.init();
+				if(i == 0) {
+					this.ar = dao.init();
+					i=1;}
+				else
+					dao.backup(ar);
 				break;
 			case 2:
 				sv.view(ar);

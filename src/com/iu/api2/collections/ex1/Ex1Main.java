@@ -16,18 +16,20 @@ public class Ex1Main {
 		//6.학생정보 
 		//6.프로그램 종료
 		StudentControl st = new StudentControl();
+		
 		st.start();
 		
-		File file = new File("C:\\fileTest", "a.txt");
 		
-		try {
-			FileWriter fw = new FileWriter(file);
-			fw.write("test\r\n");
-			fw.flush();
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
+//		File file = new File("C:\\fileTest", "a.txt");
+//		
+//		try {
+//			FileWriter fw = new FileWriter(file);
+//			fw.write("test\r\n");
+//			fw.flush();
+//		} catch (IOException e) {
+//			
+//			e.printStackTrace();
+//		}
 		
 		
 		
