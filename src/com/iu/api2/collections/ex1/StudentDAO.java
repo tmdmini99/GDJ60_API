@@ -1,17 +1,19 @@
 package com.iu.api2.collections.ex1;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class StudentDAO {
 	private StringBuffer sb;
+	private long times;
 	Scanner sc =new Scanner(System.in);
 	public StudentDAO() { 
 		this.sb = new StringBuffer();
@@ -19,29 +21,65 @@ public class StudentDAO {
 		sb.append("winter-2-86-84-75-");
 		sb.append("suji-3-23-53-23-");
 		sb.append("choa,4,71,25,99");
+		this.times = 0;
 
 	}
 	//학생정보 초기화
 	public ArrayList<StudentDTO> init() {
-		String s = this.sb.toString();
 		
-		s =s.replace(",", "-");
-		
-		StringTokenizer st = new StringTokenizer(s,"-");
-
+		File file = null;
+		if(times == 0) {
+			file = new File("C:\\fileTest","backup.txt");
+		}else
+			file = new File("C:\\fileTest",times+".txt");
+			
+		FileReader fr = null;
+		BufferedReader br = null;
 		ArrayList<StudentDTO> ar = new ArrayList<>();
-		while(st.hasMoreTokens()) {
-			StudentDTO dto = new StudentDTO();
-			dto.setName(st.nextToken());
-			dto.setNum(Integer.parseInt(st.nextToken()));
-			dto.setKor(Integer.parseInt(st.nextToken()));
-			dto.setMath(Integer.parseInt(st.nextToken()));
-			dto.setEng(Integer.parseInt(st.nextToken()));
-			dto.setTotal(dto.getKor()+dto.getMath()+dto.getEng());
-			dto.setAvg(dto.getTotal()/3.0);
-			ar.add(dto);
+		
+		try {
+			 fr = new FileReader(file);
+			 br = new BufferedReader(fr);
+			 String data = null;
+			 while((data = br.readLine()) != null) {
+				 //while문 안에 (data = br.readLine()) != null을 넣으면
+				 //data = br.readLine()이렇게 한줄을 읽어 오고 이 값이 널인지 확인하고
+				 //null이 아니면 읽어온  데이터 가지고 while문 실행
+				 data =data.replace(",", "-");
+				 StringTokenizer st = new StringTokenizer(data,"-");
+				 StudentDTO dto = new StudentDTO();
+				 dto.setName(st.nextToken());
+				 dto.setNum(Integer.parseInt(st.nextToken()));
+				 dto.setKor(Integer.parseInt(st.nextToken()));
+				 dto.setMath(Integer.parseInt(st.nextToken()));
+				 dto.setEng(Integer.parseInt(st.nextToken()));
+				 dto.setTotal(dto.getKor()+dto.getMath()+dto.getEng());
+				 dto.setAvg(dto.getTotal()/3.0);
+				 ar.add(dto);
+			}
+			 
+			 
+			 
+			 
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}finally {
+			try {
+				br.close();//close는 역순으로 끊어야함
+				fr.close();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
 		}
-		System.out.println(ar);
+		
+		
+		
+		
+		
+
+		
 		return ar;
 
 	}
@@ -110,46 +148,66 @@ public class StudentDAO {
 	//현재시간을 파일명으로 해서 파일 작성
 	public void backup(ArrayList<StudentDTO> dto) {
 		
-		
-			
-			
-		
-		Calendar ca = Calendar.getInstance();
-		Date now =ca.getTime();
-		SimpleDateFormat nows =new SimpleDateFormat();
-		String realnow = "";
-		realnow =realnow+nows.format(now);
-		realnow=realnow.replace(":", ".");
-		realnow =realnow+".txt";
-		System.out.println(realnow);
-		
-		File file = new File("C:\\fileTest",realnow);
-		
-		
-		String ss="";
-		ArrayList<String> s = new ArrayList<>();
-		for(int i=0;i<dto.size();i++) {
-			StringBuffer sbs = new StringBuffer();
-			sbs.append(dto.get(i).getName()+"-");
-			sbs.append(dto.get(i).getNum()+"-");
-			sbs.append(dto.get(i).getKor()+"-");
-			sbs.append(dto.get(i).getMath()+"-");
-			sbs.append(dto.get(i).getEng()+"-");
-			sbs.append(dto.get(i).getTotal()+"-");
-			sbs.append(dto.get(i).getAvg()+"-\n");
-			
-			ss = ss+sbs.toString();
-		}
-		
+		Calendar ca =Calendar.getInstance();
+		long time =ca.getTimeInMillis();
+		times = time;
+		File file = new File("C:\\fileTest",time+".txt");
+		FileWriter fw = null;
 		try {
-			FileWriter fw = new FileWriter(file);
-			fw.write(ss+"\r\n");
-			fw.flush();
-		} catch (IOException e) {
+			fw = new FileWriter(file);
+			for(StudentDTO studentDTO : dto) {
+				StringBuffer sb = new StringBuffer();
+				sb.append(studentDTO.getName());
+				sb.append("-");
+				sb.append(studentDTO.getNum());
+				sb.append("-");
+				sb.append(studentDTO.getKor());
+				sb.append("-");
+				sb.append(studentDTO.getMath());
+				sb.append("-");
+				sb.append(studentDTO.getEng());
+				sb.append("\r\n");
+				
+				
+				fw.write(sb.toString());
+				fw.flush();
+			}
+		} catch (Exception e1) {
 			
-			e.printStackTrace();
+			e1.printStackTrace();
+		}finally {
+			try {
+				fw.close();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
 		}
 		
-		}
-	
+		
+		
+		
+//		String ss="";
+//		ArrayList<String> s = new ArrayList<>();
+//		for(int i=0;i<dto.size();i++) {
+//			StringBuffer sbs = new StringBuffer();
+//			sbs.append(dto.get(i).getName()+"-");
+//			sbs.append(dto.get(i).getNum()+"-");
+//			sbs.append(dto.get(i).getKor()+"-");
+//			sbs.append(dto.get(i).getMath()+"-");
+//			sbs.append(dto.get(i).getEng()+"-");
+//			sbs.append(dto.get(i).getTotal()+"-");
+//			sbs.append(dto.get(i).getAvg()+"-\n");
+//			
+//			ss = ss+sbs.toString();
+//			
+//			
+//
+//
+//
+//
+//		}
+		
+		
+	}
 }
