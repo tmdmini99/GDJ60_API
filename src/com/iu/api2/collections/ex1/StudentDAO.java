@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
 
 public class StudentDAO {
 	private StringBuffer sb;
-	private long times;
+	
 	Scanner sc =new Scanner(System.in);
 	public StudentDAO() { 
 		this.sb = new StringBuffer();
@@ -21,17 +21,31 @@ public class StudentDAO {
 		sb.append("winter-2-86-84-75-");
 		sb.append("suji-3-23-53-23-");
 		sb.append("choa,4,71,25,99");
-		this.times = 0;
+		
 
 	}
 	//학생정보 초기화
 	public ArrayList<StudentDTO> init() {
 		
-		File file = null;
-		if(times == 0) {
-			file = new File("C:\\fileTest","backup.txt");
-		}else
-			file = new File("C:\\fileTest",times+".txt");
+			File file = new File("C:\\fileTest");
+			String [] names =file.list();//fileTest안에 있는 파일을 모두 가져옴
+			long max =0;
+			for(String name:names) {
+				
+				;
+				long date= Long.parseLong(name.substring(0,name.lastIndexOf(".")));
+				if(date>max) {
+					max=date;
+				}
+			}
+			
+			file = new File(file,max+".txt");
+			
+			
+			
+			
+		
+			
 			
 		FileReader fr = null;
 		BufferedReader br = null;
@@ -150,7 +164,7 @@ public class StudentDAO {
 		
 		Calendar ca =Calendar.getInstance();
 		long time =ca.getTimeInMillis();
-		times = time;
+		
 		File file = new File("C:\\fileTest",time+".txt");
 		FileWriter fw = null;
 		try {
