@@ -2,7 +2,7 @@ package com.iu.api4.network;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -26,7 +26,7 @@ public class Server1 {
 		OutputStream os = null;
 		OutputStreamWriter ow= null;
 		BufferedWriter bw= null;
-		boolean check = true;
+		
 		
 		
 		try {
@@ -43,21 +43,30 @@ public class Server1 {
 			br = new BufferedReader(iw);
 			String msg = br.readLine();
 			System.out.println("Client :"+msg);
+			if(msg.toUpperCase().equals("Q")) {
+				break;
+			}
+			
+			
 			
 			System.out.println("클라이언트에게 보낼 메세지");
-			String ms = scc.next();
+			
+			
+			msg = scc.next();
 			os = sc.getOutputStream();
 			//char
 			ow = new OutputStreamWriter(os);
 			//Stream
 			bw = new BufferedWriter(ow);
-			bw.write(ms+"\r\n");
+			bw.write(msg+"\r\n");
 			bw.flush();
-			
-			if(msg.equals("끝") || ms.equals("끝")){
+			if(msg.toUpperCase().equals("Q")) {
 				break;
 			}
-				}
+			
+			}
+			
+			
 				
 			
 			
@@ -77,6 +86,7 @@ public class Server1 {
 				is.close();
 				sc.close();
 				ss.close();
+				scc.close();
 			} catch (Exception e) {
 				
 				e.printStackTrace();
