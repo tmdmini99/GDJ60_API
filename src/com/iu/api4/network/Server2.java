@@ -10,6 +10,7 @@ import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Random;
 
 public class Server2 {
@@ -29,6 +30,11 @@ public class Server2 {
 		OutputStream os = null;
 		OutputStreamWriter or = null;
 		BufferedWriter bw = null;
+		
+		
+		Calendar ca = Calendar.getInstance();
+		
+		
 		ArrayList<String> ar = new ArrayList<>();
 		ar.add("삼각김밥");
 		ar.add("그냥 김밥");
@@ -49,12 +55,17 @@ public class Server2 {
 			s = sc.accept();
 			System.out.println("연결 성공");
 			
-			while(true) {
 			is = s.getInputStream();
 			ir=new InputStreamReader(is);
 			br = new BufferedReader(ir);
+			
+			os= s.getOutputStream();
+			or = new OutputStreamWriter(os);
+			bw = new BufferedWriter(or);
+			
+			while(true) {
 			String msg =br.readLine();
-			Random random = new Random();
+			Random random = new Random(ca.getTimeInMillis());
 			int num = random.nextInt(5);
 			
 			
@@ -66,9 +77,6 @@ public class Server2 {
 			}else
 				break;
 			
-			os= s.getOutputStream();
-			or = new OutputStreamWriter(os);
-			bw = new BufferedWriter(or);
 			bw.write(msg+"\r\n");
 			bw.flush();
 			
