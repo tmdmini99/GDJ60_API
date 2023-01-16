@@ -11,7 +11,7 @@ public class ServerMainT {
 		try {
 			new StudentControlT().start();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
